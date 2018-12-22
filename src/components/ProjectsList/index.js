@@ -5,7 +5,7 @@ import {fetchTasks} from '../../actions/'
 
 class ProjectList extends React.Component {
 	render() {
-		const { projects, className } = this.props
+		const { projects, className, fetchTasks } = this.props
 
 		return (
 			projects !== undefined &&
@@ -16,7 +16,7 @@ class ProjectList extends React.Component {
 								const { _id, projectTitle, favorite } = project
 
 								return (
-									<li key={idx} className={'active'} onClick={() => this.props.fetchTasks(project._id)}>
+									<li key={idx} className={'active'} onClick={() => fetchTasks(project._id)}>
 										<span title={ projectTitle }>{ projectTitle }</span>
 										{/* <ProjectMenu
 											iconVisibility={true}

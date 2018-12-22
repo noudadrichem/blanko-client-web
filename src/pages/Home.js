@@ -5,13 +5,19 @@ import { withRouter } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 import TasksContainer from '../components/tasksContainer'
 
-import { fetchProjects } from '../actions'
+import { fetchProjects, fetchTasks } from '../actions'
 
 class Home extends Component {
 	componentDidMount() {
 		const { fetchProjects } = this.props
 		fetchProjects()
+		const activeProjectId = window.localStorage.getItem('PROJ')
+		console.log({ activeProjectId })
+		if(activeProjectId) {
+			fetchTasks(activeProjectId)
+		}
 	}
+
 	render() {
 		return (
 			<>

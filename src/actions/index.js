@@ -22,7 +22,6 @@ export const login = userInfo => {
 export const fetchProjects = () => {
 	return dispatch => http.get(`${config.apiUrl}/projects`)
 		.then(resolved => {
-			console.log({ resolvedProjects: resolved })
 			dispatch({
 				type: types.FETCH_PROJECTS,
 				payload: resolved.data
@@ -31,7 +30,7 @@ export const fetchProjects = () => {
 }
 
 export const fetchTasks = projectId => {
-	console.log('project id from actions', projectId)
+	window.localStorage.setItem('PROJ', projectId)
 	return dispatch => http.get(`${config.apiUrl}/projects/${projectId}/tasks`)
 		.then(resolved => {
 			dispatch({
