@@ -9,45 +9,12 @@ import Input from '../Input'
 import './FilterBar.scss'
 
 function FilterBar(props) {
-  const {
-    isSticky,
-    handleTaskSearch,
-    handleTaskStatusFilter,
-    filterStatus
-  } = props
-
-  const filterButtons = [
-    {
-      text: 'To do',
-      value: 'TODO',
-    },
-    {
-      text: 'Done',
-      value: 'DONE',
-    },
-    {
-      text: 'All',
-      value: 'ALL',
-    }
-  ]
+  const { handleTaskSearch, } = props
 
   return (
-    <div className={`filter-bar ${isSticky ? 'sticky' : ''}`}>
-      {/* {
-        filterButtons.map(({ text, value }, idx) => (
-          <Button
-            text={text}
-            size="md"
-            value={value}
-            variant={value === filterStatus ? 'primary' : 'secondary'}
-            onClick={handleTaskStatusFilter}
-            key={idx}
-          />
-        ))
-      } */}
-
+    <div>
       { window.innerWidth > 400 && <Input placeholder="Search" icon="glass" onChange={handleTaskSearch} /> }
-    </div>
+     </div>
   )
 }
 

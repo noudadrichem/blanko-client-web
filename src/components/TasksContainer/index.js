@@ -31,6 +31,7 @@ class TasksContainer extends Component {
     const hasSelectedProject = window.localStorage.getItem('PROJ_ID')
     const { getSingleProject, fetchTasks } = this.props
 
+    console.log('hasSelectedProject', hasSelectedProject)
     if (hasSelectedProject) {
       getSingleProject(hasSelectedProject)
       fetchTasks(hasSelectedProject)
