@@ -26,6 +26,18 @@ export const fetchProjects = () => dispatch => http.get(`${config.apiUrl}/projec
     })
   })
 
+export function fetchSharedProjects() {
+  return dispatch => {
+    http.get(`${config.apiUrl}/projects/shared`)
+      .then((resolved) => {
+        dispatch({
+          type: types.FETCH_PROJECTS,
+          payload: resolved.data
+        })
+      })
+  }
+}
+
 export const setSelectedProject = project => {
   return ({
     type: types.SET_PROJECT_DATA,
