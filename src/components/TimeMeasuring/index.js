@@ -12,9 +12,9 @@ import SingleMeasurement from './SingleMeasurement'
 import Button from '../Button'
 import NewMeasurement from './NewMeasurement'
 import {
-  secondsToHourMinuteSecond,
-  totalInSeconds
-} from './measurementActions'
+  time
+} from './../../utils'
+const { secondsToHourMinuteSecond, totalInSeconds} = time
 
 class TimeMeasuring extends React.Component {
 	state = {
@@ -52,7 +52,7 @@ class TimeMeasuring extends React.Component {
     }, 500)
 	}
 
-	stopMeasurement = taskId => {
+	stopMeasurement = projectId => {
 		this.setState({
       isMeasuring: false,
       startTime: this.currenTime(),
@@ -62,7 +62,7 @@ class TimeMeasuring extends React.Component {
 				endTime: this.currenTime(),
 				isFinished: true
 			}
-      this.props.stopTimeMeasurement(taskId, this.props.activeMeasurementId , putMeasurement)
+      this.props.stopTimeMeasurement(projectId, this.props.activeMeasurementId , putMeasurement)
     clearInterval(this.interval)
 		})
   }
@@ -74,10 +74,10 @@ class TimeMeasuring extends React.Component {
   }
 
 	render() {
-    const { activeTaskId, measurements } = this.props
+    const { activeTaskId, activeProjectId, measurements } = this.props
     const { startTime, currenTime, isMeasuring, isAddNewMeasurementShown} = this.state
     const totalMeasuredTime = measurements.filter(m => m.isFinished).reduce((zero, { total }) => zero + total, 0)
-    
+
 		return (
 			<div className="time-measurements">
         <div className="new-measurement">
@@ -94,15 +94,15 @@ class TimeMeasuring extends React.Component {
 				<div className="current-measurement">
           {
             isMeasuring
-            ? <Button onClick={() => this.stopMeasurement(activeTaskId)} text="Stop" variant="danger" />
-            : (
-              <div className="plus-measurement">
-                <span onClick={this.toggleIsAddNewMeasurementShown} className="plus-measurement-btn">
-                  <img src={require('../../assets/icons/plus.svg')} />
-                </span>
-                <Button onClick={() => this.startMeasurement(activeTaskId)} text="Start" variant="primary" />
-              </div>
-            )
+              ? <Button onClick={() => this.stopMeasurement(activeProjectId)} text="Stop" variant="danger" />
+              : (
+                <div className="plus-measurement">
+                  <span onClick={this.toggleIsAddNewMeasurementShown} className="plus-measurement-btn">
+                    <img src={require('../../assets/icons/plus.svg')} />
+                  </span>
+                  <Button onClick={() => this.startMeasurement(activeTaskId)} text="Start" variant="primary" />
+                </div>
+              )
           }
 					<div className="numbers mono">
 					{
@@ -138,6 +138,7 @@ class TimeMeasuring extends React.Component {
 function mapStateToProps({ projectReducer }) {
   return {
     activeTaskId: projectReducer.activeTask._id,
+    activeProjectId: projectReducer.activeProject._id,
     measurements: projectReducer.measurements,
     activeMeasurementId: projectReducer.activeMeasurementId,
     activeProjectId: projectReducer.activeProject._id

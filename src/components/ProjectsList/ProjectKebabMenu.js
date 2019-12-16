@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import './ProjectKebabMenu.scss'
+import { DELETE_PROJECT } from '../../contstants/actionTypes'
 
 
 function ProjectKebabMenu(props) {
-  const { toggleModal, updateProject, projectId, DELETE_PROJECT } = props
+  const { toggleModal, updateProject, projectId } = props
   const [isShown, setIsShown] = useState(false)
   let container
 

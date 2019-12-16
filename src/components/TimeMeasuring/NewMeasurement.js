@@ -4,10 +4,8 @@ import Input from '../Input'
 import Button from '../Button'
 import { addNewTimeMeasurement } from '../../actions'
 
-import {
-  hoursToSeconds,
-  minutesToSeconds
-} from './measurementActions'
+import { time } from './../../utils'
+const { hoursToSeconds, minutesToSeconds } = time
 
 function NewMeasurement(props) {
   const { addNewTimeMeasurement, taskId, toggleIsAddNewMeasurementShown } = props

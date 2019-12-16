@@ -7,7 +7,7 @@ export function secondsToHourMinuteSecond(totalSeconds) {
 }
 
 export function totalInMiliSeconds(endTime, startTime) {
-  return  Math.floor(endTime - startTime)
+  return Math.floor(endTime - startTime)
 }
 
 export function totalInSeconds(endTime, startTime) {

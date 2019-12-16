@@ -119,6 +119,11 @@ export default function projectsReducer(state = initialState, action) {
         ...state,
         measurements: [...state.measurements, action.payload.newMeasurement]
       }
+    case types.ACCUMULATED_PROJECT:
+        return {
+          ...state,
+          accumulatedTime: action.payload.accumulatedTime
+        }
     default:
       return state
   }

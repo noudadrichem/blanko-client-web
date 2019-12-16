@@ -9,5 +9,6 @@ export default {
   isAddProjectShown: false,
   isVerificationShown: false,
   activeTask: undefined,
-  isSidebarShown: false
+  isSidebarShown: false,
+  accumulatedTime: undefined
 }
