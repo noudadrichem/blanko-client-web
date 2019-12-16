@@ -274,20 +274,14 @@ export function renewTasksArray(newTask) {
 
 export function updateProject(projectId, updateObject) {
   return (dispatch, getState) => {
-    if (updateObject === undefined) {
-      const currentFavStatus = getState().projectReducer.activeProject.favorite
-      updateObject = {
-        favorite: !currentFavStatus
-      }
-    }
-
     const oldProjects = getState().projectReducer.projects
     const newProjects = oldProjects.map((project) => {
       if (project._id === projectId) {
         const updatedproject = {
           ...project,
-          favorite: !project.favorite
+          ...updateObject
         }
+
         return updatedproject
       }
       return project
@@ -380,5 +374,4 @@ export function fetchAccumulatedProjectTime(projectId) {
         payload: resolved.data
       })
     })
-
 }

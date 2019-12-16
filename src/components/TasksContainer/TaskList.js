@@ -26,7 +26,7 @@ class TaskList extends React.Component {
     const { searchQuery } = this.props
 
     return (
-      title.toLowerCase().includes(searchQuery) || 
+      title.toLowerCase().includes(searchQuery) ||
       subTitle.toLowerCase().includes(searchQuery)
     )
   }

@@ -9,14 +9,14 @@ import {
 } from '../../actions'
 
 // Components
-import FilterBar from '../FilterBar'
 import TaskList from './TaskList'
-import { time } from '../../utils'
+import FilterBar from '../FilterBar'
+import Retainer from '../Retainer'
+import SadFace from '../../assets/sad-face'
 
 // Styles
 import './TasksContainer.scss'
 
-const { secondsToHourMinuteSecond, totalInSeconds } = time
 class TasksContainer extends Component {
   constructor(props) {
     super(props)
@@ -101,15 +101,15 @@ class TasksContainer extends Component {
         }
 
         {
-          secondsToHourMinuteSecond(accumulatedTime / 1000)
-        }
-
-        {
           projectTitle !== undefined
           ? <>
-            <div className="home-container-title" ref={this.tasksContainerTitle}>
-              <h1>{projectTitle}</h1>
-              <p>{projectDescription}</p>
+            <div className="tasks-container-title" ref={this.tasksContainerTitle}>
+              <div>
+                <h1>{projectTitle}</h1>
+                <p>{projectDescription}</p>
+              </div>
+
+              <Retainer accumulatedTime={accumulatedTime} />
             </div>
 
             <FilterBar
@@ -135,7 +135,10 @@ class TasksContainer extends Component {
             />
 
             </>
-          : <div>Project does not exist...</div>
+          : <div className="project-not-found">
+              <SadFace />
+              <h4>Project does not exist...</h4>
+            </div>
         }
       </div>
     )
